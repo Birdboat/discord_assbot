@@ -5,6 +5,7 @@ import { CommandoClient, Command, CommandMessage, CommandGroup, CommandInfo } fr
 import * as fs from 'fs';
 import * as path from 'path'
 import { Emojis } from './exports';
+import { Utils } from './utils';
 
 const config:any = JSON.parse(fs.readFileSync("./config.json", "UTF-8"));
 export const client = new CommandoClient(
@@ -28,7 +29,7 @@ export class EmojiGroup extends CommandGroup {
 }
 
 class AboutCommand extends Command {
-    constructor(client:CommandoClient) {
+    constructor(client: CommandoClient) {
         super(client, {
             name: "about",
             group: "core",
@@ -38,11 +39,11 @@ class AboutCommand extends Command {
         });
     }
 
-    public hasPermission(message:CommandMessage) {
+    public hasPermission(message: CommandMessage) {
         return true;
     }
 
-    public run(message:CommandMessage) {
+    public run(message: CommandMessage) {
         return message.say("```assbot......```");
     }
 }
@@ -57,7 +58,7 @@ client
         console.log("```error......." + error.name + "......." + error.message + "......fuk............" +"```");
     })
     .on("commandNotCompleted", (msg: CommandMessage) => {
-        console.log("oh yeah baby")
+        msg.channel.send("```usage: " + Utils.commandUsage(msg) + "```");
     })
     .on("unknownCommand", (msg) => {
         console.log("Unknown command: " + msg.content);

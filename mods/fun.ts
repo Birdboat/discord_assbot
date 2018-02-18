@@ -12,7 +12,7 @@ export class KillCommand extends Command {
         });
     }
 
-    async run(msg:CommandMessage) : Promise<Message | Message[]> {
+    async run(msg:CommandMessage): Promise<Message | Message[]> {
         return msg.say("oh yeah baby");
     }
 }
@@ -28,14 +28,13 @@ export class RateCommand extends Command {
             args: [
                 {
                     key: "thing",
-                    prompt: "",
                     type: "string"
                 }
             ]
         });
     }
 
-    async run(msg:CommandMessage, { thing }) : Promise<Message | Message[]> {
+    async run(msg:CommandMessage, { thing }): Promise<Message | Message[]> {
         var str = thing as string;
         return msg.say("dab");
     }

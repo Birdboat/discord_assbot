@@ -5,7 +5,7 @@ import { Utils } from '../utils';
 
 export class HelpCommand extends Command {
 
-    public HelpMessageCollectors:Map<Guild, ReactionCollector>;
+    public HelpMessageCollectors: Map<Guild, ReactionCollector>;
 
     constructor(client) {
         super(client, {
@@ -19,14 +19,14 @@ export class HelpCommand extends Command {
         this.HelpMessageCollectors = new Map();
     }
 
-    generateRichEmbedForGroup(group:CommandGroup) {
+    generateRichEmbedForGroup(group: CommandGroup) {
         var embed = Utils.defaultRichEmbed();
         embed.setTitle("group: " + group.id);
         embed.setDescription(group.name);
         embed.addBlankField(true);
         group.commands.forEach((v) => {
             embed.addField(v.name, v.description);
-            embed.addField("usage: ", "```" + v.usage().replace(/`/g, "") + "```");
+            embed.addField("usage: ", "```" + Utils.commandUsage(v) + "```");
             embed.addBlankField(true);
         });
         embed.setFooter("bot stops collecting in 5 minutes");
@@ -34,13 +34,13 @@ export class HelpCommand extends Command {
         return embed;
     }
 
-    async run(msg:CommandMessage) : Promise<Message | Message[]> {
+    async run(msg: CommandMessage): Promise<Message | Message[]> {
         const embed = this.generateRichEmbedForGroup(client.registry.groups.first());
         const embedmsg = await msg.embed(embed) as Message; // make sure yo stuff async n cast
         client.registry.groups.forEach(async (g:EmojiGroup) => { // assuming every group is an EmojiGroup, will throw error if not
             await embedmsg.react(g.emoji);
         });
-
+        
         if (this.HelpMessageCollectors.has(msg.guild)) {
             var c = this.HelpMessageCollectors.get(msg.guild);
             this.HelpMessageCollectors.delete(msg.guild);
