@@ -56,6 +56,9 @@ client
     .on("commandError", (cmd, error) => {
         console.log("```error......." + error.name + "......." + error.message + "......fuk............" +"```");
     })
+    .on("commandNotCompleted", (msg: CommandMessage) => {
+        console.log("oh yeah baby")
+    })
     .on("unknownCommand", (msg) => {
         console.log("Unknown command: " + msg.content);
     })
