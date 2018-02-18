@@ -1,6 +1,13 @@
 import { Message } from 'discord.js';
 import { Command, CommandMessage } from 'discord.js-commando';
 
+/**
+ * kill command
+ * 
+ * @export
+ * @class KillCommand
+ * @extends {Command}
+ */
 export class KillCommand extends Command {
     constructor(client) {
         super(client, {
@@ -13,10 +20,17 @@ export class KillCommand extends Command {
     }
 
     async run(msg:CommandMessage): Promise<Message | Message[]> {
-        return msg.say("oh yeah baby");
+        return msg.say(">:(");
     }
 }
 
+/**
+ * rate command
+ * 
+ * @export
+ * @class RateCommand
+ * @extends {Command}
+ */
 export class RateCommand extends Command {
     constructor(client) {
         super(client, {

@@ -3,6 +3,13 @@ import { EmojiGroup, client } from '../bot'
 import { Message, RichEmbed, User, Guild, ReactionCollector } from 'discord.js';
 import { Utils } from '../utils';
 
+/**
+ * help command
+ * 
+ * @export
+ * @class HelpCommand
+ * @extends {Command}
+ */
 export class HelpCommand extends Command {
 
     public HelpMessageCollectors: Map<Guild, ReactionCollector>;

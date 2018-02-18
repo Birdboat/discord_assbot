@@ -19,6 +19,13 @@ export const client = new CommandoClient(
     }
 );
 
+/**
+ * group that has an emoji property
+ * 
+ * @export
+ * @class EmojiGroup
+ * @extends {CommandGroup}
+ */
 export class EmojiGroup extends CommandGroup {
     public constructor(client: CommandoClient, emoji:string | Emoji | ReactionEmoji, id: string, name?: string, guarded?: boolean, commands?: Command[]){
         super(client, id, name, guarded, commands);
@@ -28,6 +35,12 @@ export class EmojiGroup extends CommandGroup {
     public emoji: string | Emoji | ReactionEmoji;
 }
 
+/**
+ * about command
+ * 
+ * @class AboutCommand
+ * @extends {Command}
+ */
 class AboutCommand extends Command {
     constructor(client: CommandoClient) {
         super(client, {
